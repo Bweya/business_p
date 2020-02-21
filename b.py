@@ -2,14 +2,16 @@ import xlsxwriter
 import pandas as pd
 import os
 import math
+import datetime
 
 def trade():
 
     files = os.listdir('files')
 
-    year = '2019'
+    #year = '2019'
+    year = datetime.datetime.now().year
 
-    workbook = xlsxwriter.Workbook(year+'partners.xlsx')
+    workbook = xlsxwriter.Workbook(str(year)+'partners.xlsx')
     worksheet = workbook.add_worksheet()
 
     border = workbook.add_format({'border':1,'align':'center'})
@@ -17,7 +19,7 @@ def trade():
 
     worksheet.set_column('A:C', 45)
 
-    worksheet.merge_range('A1:C1', 'Number of approved FX trades by business partners 01 JAN - 31 DEC '+year, bolds)
+    worksheet.merge_range('A1:C1', 'Number of approved FX trades by business partners 01 JAN - 31 DEC '+str(year), bolds)
 
     bold = workbook.add_format({'bold':True, 'border':1})
     gtotal =  workbook.add_format({'bold': True, 'align':'center', 'bg_color':'#A9A9A9', 'border': 1})
